@@ -1,18 +1,7 @@
-import express from "express";
-import diaryRouter from "@routes/diaries.routes";
+import "@config/env";
+import server from "@config/http";
 
-const app = express();
-
-app.use(express.json());
-
-const PORT = 3000;
-
-app.get("/", (_req, res) => {
-  res.send({ message: "Welcome" });
-});
-
-app.use("/api/diaries", diaryRouter);
-
-app.listen(PORT, () => {
-  console.log(`Server up on http://localhost:${PORT}`);
-});
+(() => {
+  server.listen(process.env.PORT);
+  console.log(`Server at http://localhost:${process.env.PORT}`);
+})();

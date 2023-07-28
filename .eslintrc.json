@@ -25,7 +25,8 @@
             "alias": {
               "@routes": "./src/routes",
               "@constrollers": "./src/controllers",
-              "@config": "./src/confing"
+              "@config": "./src/config",
+              "@models": "./src/models"
             }
           }
         ]
