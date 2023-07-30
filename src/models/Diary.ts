@@ -1,11 +1,12 @@
 import { Schema, model } from "mongoose";
+import { IDiary } from "./../types.d";
 
-const schema = new Schema({
-  _id: { types: Schema.Types.UUID, required: true },
+const schema: Schema = new Schema<IDiary>({
+  _id: Schema.Types.UUID,
   date: Date,
   weather: String,
   visibility: String,
   comment: String,
 });
 
-export default model("Diary", schema);
+export default model<IDiary>("Diary", schema);

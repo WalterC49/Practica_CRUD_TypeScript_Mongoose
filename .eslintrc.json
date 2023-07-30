@@ -24,7 +24,7 @@
           {
             "alias": {
               "@routes": "./src/routes",
-              "@constrollers": "./src/controllers",
+              "@services": "./src/services",
               "@config": "./src/config",
               "@models": "./src/models"
             }
