@@ -1,5 +1,10 @@
 import diaryModel from "@models/Diary";
-import { IDiary, IDiaryWithoutComment, INewDiary } from "./../types.d";
+import {
+  IDiary,
+  IDiaryWithoutComment,
+  INewDiary,
+  IUpdateDiary,
+} from "./../types.d";
 import { v4 } from "uuid";
 
 export const getAllDiaries = async (): Promise<IDiary[]> => {
@@ -32,4 +37,16 @@ export const addDiary = async (newDiary: INewDiary): Promise<IDiary> => {
   });
   await diary.save();
   return diary;
+};
+
+export const UpdateDiaryById = async (
+  id: string,
+  updateDiary: IUpdateDiary,
+): Promise<IDiary | null> => {
+  await diaryModel.findByIdAndUpdate(id, updateDiary);
+  return getDiaryById(id);
+};
+
+export const deleteDiaryById = async (id: string) => {
+  await diaryModel.findByIdAndDelete(id);
 };

@@ -5,9 +5,12 @@
       "module-resolver",
       {
         "alias": {
+          "@routes": "./src/routes",
+          "@services": "./src/services",
           "@config": "./src/config",
-          "@controllers": "./src/controllers",
-          "@routes": "./src/routes"
+          "@models": "./src/models",
+          "@utils": "./src/utils",
+          "@enums": "./src/enums"
         }
       }
     ]

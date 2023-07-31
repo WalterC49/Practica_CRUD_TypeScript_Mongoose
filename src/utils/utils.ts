@@ -1,4 +1,4 @@
-import { INewDiary } from "./../types";
+import { INewDiary, IUpdateDiary } from "./../types";
 import { Visibility, Weather } from "@enums/enums";
 
 const isString = (string: any): boolean => {
@@ -11,6 +11,10 @@ const isWeather = (param: any): boolean => {
 
 const isVisibility = (param: any): boolean => {
   return Object.values(Visibility).includes(param);
+};
+
+const isDate = (date: any): boolean => {
+  return Boolean(Date.parse(date));
 };
 
 const parseWeather = (weatherFromRequest: any): Weather => {
@@ -31,7 +35,13 @@ const parseComment = (commentFromRequest: any): string => {
   return commentFromRequest;
 };
 
-const validateNewDiary = (object: any): INewDiary => {
+const parseDate = (dateFromRequest: any): Date => {
+  if (!isString(dateFromRequest) || !isDate(dateFromRequest))
+    throw new Error("Incorrect or missing visibility");
+  return dateFromRequest;
+};
+
+export const validateNewDiary = (object: any): INewDiary => {
   const newDiary: INewDiary = {
     weather: parseWeather(object.weather),
     visibility: parseVisibility(object.visibility),
@@ -40,4 +50,12 @@ const validateNewDiary = (object: any): INewDiary => {
   return newDiary;
 };
 
-export default validateNewDiary;
+export const validateUpdateDiary = (object: any): IUpdateDiary => {
+  const newDiary: IUpdateDiary = {
+    date: parseDate(object.date),
+    weather: parseWeather(object.weather),
+    visibility: parseVisibility(object.visibility),
+    comment: parseComment(object.comment),
+  };
+  return newDiary;
+};

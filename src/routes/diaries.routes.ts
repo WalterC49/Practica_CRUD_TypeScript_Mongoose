@@ -1,9 +1,11 @@
 import {
   addDiary,
+  deleteDiaryById,
   getAllDiaries,
   getDiaryById,
+  UpdateDiaryById,
 } from "@services/diaries.services";
-import validateNewDiary from "@utils/utils";
+import { validateNewDiary, validateUpdateDiary } from "@utils/utils";
 import { Router } from "express";
 
 const router = Router();
@@ -30,21 +32,20 @@ router.post("/", async (req, res) => {
   }
 });
 
-/* router.delete("/:id", async (req, res) => {
-  const { id } = req.params;
-  const result = await getDiaryById(id);
-  return result ? res.send(result) : res.sendStatus(404);
-});
-
 router.put("/:id", async (req, res) => {
   try {
-    const newDiary = validateNewDiary(req.body);
+    const newDiary = validateUpdateDiary(req.body);
 
-    const diary = await addDiary(newDiary);
+    const diary = await UpdateDiaryById(req.params.id, newDiary);
     res.json(diary);
   } catch (e: any) {
     res.status(400).send(e.message);
   }
-}); */
+});
+
+router.delete("/:id", async (req, res) => {
+  await deleteDiaryById(req.params.id);
+  res.send({ message: "Diary deleted." });
+});
 
 export default router;

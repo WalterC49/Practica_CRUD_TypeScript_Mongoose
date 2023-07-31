@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --extensions \".ts,.js\" --out-dir build",
     "start": "node build/index.js",
-    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules src/index.ts"
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules src/index.ts",
+    "seed": "ts-node-dev src/seeders/diary.seed.ts"
   },
   "keywords": [],
   "author": "Walter Marcos Crespín",

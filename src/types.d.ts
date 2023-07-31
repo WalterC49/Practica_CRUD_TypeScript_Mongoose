@@ -10,6 +10,8 @@ export interface IDiary {
 
 export type INewDiary = Omit<IDiary, "_id" | "date">;
 
+export type IUpdateDiary = Omit<IDiary, "_id">;
+
 export type IDiaryWithoutComment2 = Pick<
   IDiary,
   "_id" | "date" | "visibility" | "weather"
