@@ -1,5 +1,4 @@
-export type Weather = "sunny" | "rainy" | "cloudy" | "windy" | "stormy";
-export type Visibility = "great" | "good" | "ok" | "poor";
+import { Visibility, Weather } from "enums/enums";
 
 export interface IDiary {
   _id: string;
@@ -9,9 +8,11 @@ export interface IDiary {
   comment: string;
 }
 
-export type IDiaryWithoutComment = Pick<
+export type INewDiary = Omit<IDiary, "_id" | "date">;
+
+export type IDiaryWithoutComment2 = Pick<
   IDiary,
   "_id" | "date" | "visibility" | "weather"
 >;
 
-export type IDiaryWithoutComment2 = Omit<IDiary, "comment">;
+export type IDiaryWithoutComment = Omit<IDiary, "comment">;
